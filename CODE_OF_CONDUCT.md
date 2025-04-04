@@ -2,11 +2,11 @@
 
 ## 1. Purpose
 
-A primary goal of Fork, Commit, Merge is to be inclusive to the largest number of contributors, with the most varied and diverse backgrounds possible. As such, we are committed to providing a friendly, safe and welcoming environment for all, regardless of gender, sexual orientation, ability, ethnicity, socioeconomic status, and religion (or lack thereof).
+A primary goal of genesis_of_programming is to be inclusive to the largest number of contributors, with the most varied and diverse backgrounds possible. As such, we are committed to providing a friendly, safe and welcoming environment for all, regardless of gender, sexual orientation, ability, ethnicity, socioeconomic status, and religion (or lack thereof).
 
 This Code of Conduct outlines our expectations for all those who participate in our community, as well as the consequences for unacceptable behavior.
 
-We invite all those who participate in Fork, Commit, Merge to help us create safe and positive experiences for everyone.
+We invite all those who participate in genesis_of_programming to help us create safe and positive experiences for everyone.
 
 ## 2. Open Source Citizenship
 
@@ -47,7 +47,7 @@ If a community member engages in unacceptable behavior, the community organizers
 
 ## 6. Reporting Guidelines
 
-If you are subject to or witness unacceptable behavior, or have any other concerns, please notify a community organizer as soon as possible at niko.hoffren@gmail.com.
+If you are subject to or witness unacceptable behavior, or have any other concerns, please notify a community organizer as soon as possible at engelstan0@gmail.com.
 
 ## 7. Addressing Grievances
 

@@ -1501,7 +1501,7 @@ Remember to consult the official documentation for the most up-to-date and detai
 -   Install [kubectl](https://kubernetes.io/docs/tasks/tools/), the Kubernetes CLI tool.
 -   Install [Minikube](https://minikube.sigs.k8s.io/docs/start/) for local Kubernetes deployment.
 
-![line]
+
 
 
 

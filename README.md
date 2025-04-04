@@ -1,7 +1,6 @@
 <div align="center">
 
 ![Fork, Commit, Merge](/assets/images/lms.jpg)
-[![Version 1.2.0](https://img.shields.io/badge/Version-1.2.0-orange.svg)](https://github.com/fork-commit-merge/fork-commit-merge/pulls)
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 

@@ -1,0 +1,20 @@
+{
+    "name": "easy",
+    "private": true,
+    "version": "1.2.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "test": "vitest"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.2",
+        "vite": "^4.5.5",
+        "vitest": "^0.34.5"
+    },
+    "dependencies": {
+        "easy": "file:"
+    }
+}

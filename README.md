@@ -1,17 +1,12 @@
 <div align="center">
 
-![Fork, Commit, Merge](/assets/images/fork-commit-merge-banner2.png)
+![Fork, Commit, Merge](/assets/images/lms.jpg)
 [![Version 1.2.0](https://img.shields.io/badge/Version-1.2.0-orange.svg)](https://github.com/fork-commit-merge/fork-commit-merge/pulls)
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Issues](https://img.shields.io/github/issues/fork-commit-merge/fork-commit-merge.svg?style=flat)](https://github.com/fork-commit-merge/fork-commit-merge/issues)
-[![Stars](https://img.shields.io/github/stars/fork-commit-merge/fork-commit-merge.svg?style=flat)](https://github.com/fork-commit-merge/fork-commit-merge/stars)
-[![Forks](https://img.shields.io/github/forks/fork-commit-merge/fork-commit-merge.svg?style=flat)](https://github.com/fork-commit-merge/fork-commit-merge/forks)
-[![PR:s Welcome](https://img.shields.io/badge/PR:s-welcome-brightgreen.svg)](https://github.com/fork-commit-merge/fork-commit-merge/pulls)
-[![First Contributors](https://img.shields.io/badge/first-contributors-brightgreen.svg)](https://github.com/fork-commit-merge/fork-commit-merge/pulls)
-![GitHub repo size](https://img.shields.io/github/repo-size/fork-commit-merge/fork-commit-merge)
+
 
 <br>
-Welcome to "Fork, Commit, Merge"!<br>A project designed to help you familiarize yourself with the open source contribution workflow on GitHub, as well as to help you learn the basics of programming with different languages, libraries and frameworks.
+Welcome to "genesis_of_programming"!<br>A project designed to help you familiarize yourself with the open source contribution workflow on GitHub, as well as to help you learn the basics of programming with different languages, libraries and frameworks.
 
 
 

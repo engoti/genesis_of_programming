@@ -19,7 +19,7 @@
   "dependencies": {
     "express": "^4.21.2",
     "genesis_of_programming": "file:",
-    "htmx.org": "^2.0.4",
+    "htmx.org": "^2.0.7",
     "react-sound": "^1.2.0"
   }
 }

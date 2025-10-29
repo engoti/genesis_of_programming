@@ -14,11 +14,14 @@ Welcome to "genesis_of_programming"!<br>A project designed to help you familiari
 
 
 
-[![All Languages Validated](https://github.com/engoti/genesis_of_programming/actions/workflows/validate-all.yml/badge.svg)](https://github.com/engoti/genesis_of_programming/actions/workflows/validate-all.yml)
-[![Languages Passing](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/engoti/genesis_of_programming/gh-pages/status.json&label=Passing&query=%.passing&color=brightgreen)](https://github.com/engoti/genesis_of_programming/actions)
-[![Languages Failing](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/engoti/genesis_of_programming/gh-pages/status.json&label=Failing&query=%.failing&color=red)](https://github.com/engoti/genesis_of_programming/actions)
-[![Last Validation](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/engoti/genesis_of_programming/gh-pages/status.json&label=Updated&query=%.lastRun&color=blue)](https://github.com/engoti/genesis_of_programming/actions)
+# genesis_of_programming
 
+[![All Languages Validated](https://github.com/engoti/genesis_of_programming/actions/workflows/validate-all.yml/badge.svg)](https://github.com/engoti/genesis_of_programming/actions/workflows/validate-all.yml)
+[![Passing](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/engoti/genesis_of_programming/gh-pages/status.json&label=Passing&query=$.passing&color=brightgreen)](https://github.com/engoti/genesis_of_programming/actions)
+[![Failing](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/engoti/genesis_of_programming/gh-pages/status.json&label=Failing&query=$.failing.length&color=red)](https://github.com/engoti/genesis_of_programming/actions)
+[![Last Run](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/engoti/genesis_of_programming/gh-pages/status.json&label=Updated&query=$.lastRun&color=blue)](https://github.com/engoti/genesis_of_programming/actions)
+
+---
 
 </div>
 

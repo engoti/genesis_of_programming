@@ -1,80 +1,56 @@
 #!/bin/bash
 set -e
 
-echo "Setting up Genesis of Programming environment..."
+echo "Setting up Genesis of Programming with src/ structure..."
 
-# Install additional tools via package managers
+# Install compilers and tools
 sudo apt-get update && sudo apt-get install -y \
-    build-essential \
-    clang \
-    cmake \
-    gcc \
-    g++ \
-    gdb \
-    valgrind \
-    sqlite3 \
-    nginx \
-    curl \
-    wget \
-    zip \
-    unzip \
-    tree \
-    htop \
-    jq \
-    bat \
-    fzf
+    build-essential gcc g++ clang cmake gdb valgrind \
+    sqlite3 nginx curl wget zip unzip tree htop jq bat fzf
 
-# Install global npm packages
-npm install -g \
-    typescript \
-    eslint \
-    prettier \
-    live-server \
-    http-server \
-    yarn \
-    pnpm \
-    truffle \
-    ganache
+# npm global tools
+npm install -g typescript eslint prettier live-server yarn pnpm truffle
 
-# Install Python packages
-pip install --upgrade pip
-pip install flask django numpy pandas requests
+# Python packages
+pip install --upgrade pip flask django numpy pandas
 
-# Install Ruby gems
-gem install rails jekyll bundler
+# Ruby gems
+gem install rails bundler
 
-# Install Go tools
+# Go tools
 go install golang.org/x/tools/gopls@latest
-go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
-# Install Rust tools
+# Rust tools
 rustup component add rustfmt clippy
 
-# Install SDKMAN! and additional JDKs
+# SDKMAN! for Java, Kotlin, etc.
 curl -s "https://get.sdkman.io" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk install java 21-openjdk
 sdk install kotlin
-sdk install scala
-sdk install maven
-sdk install gradle
 
-# Create languages folder
-mkdir -p languages/{python,javascript,go,rust,java,c,cpp,ruby,php,html,css}
+# === CREATE src/ FOLDER STRUCTURE ===
+mkdir -p src/{python,javascript,go,rust,java,c,cpp,ruby,php,html,css,typescript}
 
-# Create sample hello world files
-cat > languages/python/hello.py << 'EOF'
+# === SAMPLE FILES ===
+cat > src/python/hello.py << 'EOF'
 print("Hello from Python!")
 EOF
 
-cat > languages/javascript/index.js << 'EOF'
+cat > src/javascript/index.js << 'EOF'
 console.log("Hello from JavaScript!");
 EOF
 
-cat > languages/go/main.go << 'EOF'
+cat > src/go/main.go << 'EOF'
 package main
 import "fmt"
 func main() { fmt.Println("Hello from Go!") }
 EOF
 
-echo "Environment ready! Open an issue and start coding."
+cat > src/c/hello.c << 'EOF'
+#include <stdio.h>
+int main() { printf("Hello from C!\n"); return 0; }
+EOF
+
+echo "src/ folder created. Ready for contributions!"
+echo "Open an issue → add your hello world → open PR"

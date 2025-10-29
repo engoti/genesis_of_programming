@@ -31,8 +31,8 @@
    → Look for `good first issue` + your favorite language
 
 2. **Write "Hello World"**  
-   → Create a file in `languages/[language]/`  
-   → Example: `languages/python/hello.py`
+   → Create a file in `src/[language]/`  
+   → Example: `src/python/hello.py`
 
 3. **Open a Pull Request**  
    → GitHub guides you  

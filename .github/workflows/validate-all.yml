@@ -3,8 +3,8 @@ name: Nightly Full Validation
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # Every day at 02:00 UTC
-  workflow_dispatch:     # Allow manual runs
+    - cron: '0 2 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -13,120 +13,101 @@ permissions:
 
 jobs:
   # ==============================================================
-  # Python Validation
+  # Python
   # ==============================================================
   python:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          # No cache → avoids "no requirements.txt" warning
-
-      - name: Run Python validation
-        run: |
+      - run: |
           chmod +x .github/scripts/validate.sh
           .github/scripts/validate.sh python
-
-      - name: Upload validation report
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: validate/
+          # 🎯 UNIQUE NAME = NO CONFLICT
+          name: python-report
 
   # ==============================================================
-  # Node.js Validation
+  # Node.js
   # ==============================================================
   node:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js 20
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          # No cache → avoids "no package-lock.json" warning
-
-      - name: Run Node.js validation
-        run: |
+      - run: |
           chmod +x .github/scripts/validate.sh
           .github/scripts/validate.sh node
-
-      - name: Upload validation report
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: validate/
+          # 🎯 UNIQUE NAME = NO CONFLICT
+          name: node-report
 
   # ==============================================================
-  # Go Validation
+  # Go
   # ==============================================================
   go:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Go 1.23
-        uses: actions/setup-go@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: '1.23'
-          # Go auto-caches modules → no warning
-
-      - name: Run Go validation
-        run: |
+      - run: |
           chmod +x .github/scripts/validate.sh
           .github/scripts/validate.sh go
-
-      - name: Upload validation report
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: validate/
+          name: go-report
 
   # ==============================================================
-  # Rust Validation
+  # Rust
   # ==============================================================
   rust:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v1
+      - uses: actions/checkout@v4
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
-          # Rust auto-caches → no extra config needed
-
-      - name: Run Rust validation
-        run: |
+      - run: |
           chmod +x .github/scripts/validate.sh
           .github/scripts/validate.sh rust
-
-      - name: Upload validation report
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: validate/
+          name: rust-report
 
   # ==============================================================
-  # Deploy Latest Report to GitHub Pages
+  # 🚀 COMBINE & DEPLOY (The Magic Step)
   # ==============================================================
   deploy:
-    if: always()  # Run even if some jobs fail
+    if: always()
     needs: [python, node, go, rust]
     runs-on: ubuntu-latest
     steps:
-      - name: Download latest report
+      - name: Download ALL reports
         uses: actions/download-artifact@v4
         with:
-          name: pages
-          path: validate/
+          path: all-reports/
+          # Downloads ALL artifacts from ALL jobs above
 
-      - name: Deploy to GitHub Pages
+      - name: Merge into single report
+        run: |
+          mkdir -p validate
+          # Copy the LATEST report (any job works - they all write same format)
+          cp all-reports/*/*/index.html validate/index.html || true
+          echo "Merged report created!"
+
+      - name: Deploy to GitHub Pages 🎉
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

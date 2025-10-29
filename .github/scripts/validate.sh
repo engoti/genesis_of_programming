@@ -21,7 +21,12 @@ for lang in "${languages[@]}"; do
       python3 "$hello_file" >/dev/null 2>&1 && ((passing++)) || failing+=("$lang")
       ;;
     "Node.js"|JavaScript)
-      node "$hello_file" >/dev/null 2>&1 && ((passing++)) || failing+=("$lang")
+      if ! command -v node >/dev/null 2>&1; then
+        echo "Installing Node.js..."
+        curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+      fi
+      node "$hello_file" > /dev/null 2>&1 && ((passing++)) || failing+=("$lang")
       ;;
     Rust)
       if ! command -v rustc >/dev/null; then

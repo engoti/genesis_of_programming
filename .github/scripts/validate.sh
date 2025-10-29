@@ -44,7 +44,6 @@ for lang in "${languages[@]}"; do
   cd - >/dev/null
 done
 
-# Generate status.json
 timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 fail_json=$(printf '%s\n' "${failing[@]}" | jq -R . | jq -s .)
 echo "{\"passing\":$passing,\"failing\":$fail_json,\"lastRun\":\"$timestamp\"}" > validate/status.json

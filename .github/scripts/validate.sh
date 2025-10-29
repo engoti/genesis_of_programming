@@ -36,14 +36,6 @@ for lang in "${languages[@]}"; do
       fi
       go run "$hello_file" >/dev/null 2>&1 && ((passing++)) || failing+=("$lang")
       ;;
-    COBOL)
-      if ! command -v cobc >/dev/null 2>&1; then
-        echo "Installing gnucobol..."
-        sudo apt-get update -qq
-        sudo apt-get install -y gnucobol
-      fi
-      cobc -x "$hello_file" && chmod +x a.out && ./a.out > /dev/null 2>&1 && ((passing++)) || failing+=("$lang")
-      ;;
     *)
       failing+=("$lang")
       ;;

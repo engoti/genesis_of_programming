@@ -1,0 +1,10 @@
+
+---
+
+
+```yaml
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & Help
+    url: https://github.com/engoti/genesis_of_programming/discussions
+    about: Please ask general questions in Discussions, not Issues.

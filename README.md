@@ -16,9 +16,17 @@ Welcome to "genesis_of_programming"!<br>A project designed to help you familiari
 
 # genesis_of_programming
 
-[![All Languages Validated](https://github.com/engoti/genesis_of_programming/actions/workflows/validate-all.yml/badge.svg)](https://github.com/engoti/genesis_of_programming/actions/workflows/validate-all.yml)
+## 🟢 Nightly Validation Status
+
+[![Nightly](https://github.com/engoti/genesis_of_programming/actions/workflows/nightly-full-validation.yml/badge.svg)](https://github.com/engoti/genesis_of_programming/actions/workflows/nightly-full-validation.yml)
+
+**🟢 Latest Report:** [View Live →](https://engoti.github.io/genesis_of_programming/)  
+**🔄 Next Run:** Every night @ 02:00 UTC
+
 [![Passing](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/engoti/genesis_of_programming/gh-pages/status.json&label=Passing&query=$.passing&color=brightgreen)](https://github.com/engoti/genesis_of_programming/actions)
+
 [![Failing](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/engoti/genesis_of_programming/gh-pages/status.json&label=Failing&query=$.failing.length&color=red)](https://github.com/engoti/genesis_of_programming/actions)
+
 [![Last Run](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/engoti/genesis_of_programming/gh-pages/status.json&label=Updated&query=$.lastRun&color=blue)](https://github.com/engoti/genesis_of_programming/actions)
 
 ---

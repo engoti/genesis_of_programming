@@ -1,0 +1,33 @@
+name: Validate PR Languages
+on:
+  pull_request:
+    paths:
+      - 'README.md'
+      - 'src/**'
+      - '.github/scripts/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Languages & Validate
+      run: |
+        chmod +x .github/scripts/validate.sh
+        .github/scripts/validate.sh --fast
+        
+    - name: Comment PR with Results
+      uses: actions/github-script@v7
+      if: always()
+      with:
+        script: |
+          const fs = require('fs');
+          const status = JSON.parse(fs.readFileSync('validate/status.json'));
+          const summary = `✅ **${status.passing}** languages validated\n❌ **${status.failing.length}** failing`;
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## Language Validation Results\n\n${summary}\n\n${status.failing.map(l => `❌ **${l}**`).join('\n')}`
+          });

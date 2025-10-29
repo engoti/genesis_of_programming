@@ -3,8 +3,8 @@ name: Nightly Full Validation
 
 on:
   schedule:
-    - cron: '0 2 * * *'
-  workflow_dispatch:
+    - cron: '0 2 * * *'  # Every day at 02:00 UTC
+  workflow_dispatch:     # Allow manual runs
 
 permissions:
   contents: write
@@ -12,59 +12,122 @@ permissions:
   actions: write
 
 jobs:
-  # -----------------------------------------------------------------
-  # One job per language group – you can add more later
-  # -----------------------------------------------------------------
-  node:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: npm
-
-      - name: Run Node validation
-        run: |
-          chmod +x .github/scripts/validate.sh
-          .github/scripts/validate.sh node   # <-- only node
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: validate/
-
+  # ==============================================================
+  # Python Validation
+  # ==============================================================
   python:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: pip
-      - run: |
+          # No cache → avoids "no requirements.txt" warning
+
+      - name: Run Python validation
+        run: |
           chmod +x .github/scripts/validate.sh
           .github/scripts/validate.sh python
-      - uses: actions/upload-pages-artifact@v3
+
+      - name: Upload validation report
+        uses: actions/upload-pages-artifact@v3
         with:
           path: validate/
 
-  # … add go, rust, java, etc. the same way …
-
-  # -----------------------------------------------------------------
-  # Deploy the latest report
-  # -----------------------------------------------------------------
-  deploy:
-    if: always()
-    needs: [node, python]   # list all jobs
+  # ==============================================================
+  # Node.js Validation
+  # ==============================================================
+  node:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          # No cache → avoids "no package-lock.json" warning
+
+      - name: Run Node.js validation
+        run: |
+          chmod +x .github/scripts/validate.sh
+          .github/scripts/validate.sh node
+
+      - name: Upload validation report
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: validate/
+
+  # ==============================================================
+  # Go Validation
+  # ==============================================================
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go 1.23
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          # Go auto-caches modules → no warning
+
+      - name: Run Go validation
+        run: |
+          chmod +x .github/scripts/validate.sh
+          .github/scripts/validate.sh go
+
+      - name: Upload validation report
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: validate/
+
+  # ==============================================================
+  # Rust Validation
+  # ==============================================================
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+          # Rust auto-caches → no extra config needed
+
+      - name: Run Rust validation
+        run: |
+          chmod +x .github/scripts/validate.sh
+          .github/scripts/validate.sh rust
+
+      - name: Upload validation report
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: validate/
+
+  # ==============================================================
+  # Deploy Latest Report to GitHub Pages
+  # ==============================================================
+  deploy:
+    if: always()  # Run even if some jobs fail
+    needs: [python, node, go, rust]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download latest report
+        uses: actions/download-artifact@v4
         with:
           name: pages
           path: validate/
-      - uses: peaceiris/actions-gh-pages@v4
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./validate

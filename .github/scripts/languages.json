@@ -1,0 +1,6 @@
+{
+  "languages": [
+    {"name": "Python", "install": "apt install python3", "test": "python3 -c 'print(1)'"},
+    {"name": "Node.js", "install": "curl -fsSL https://deb.nodesource.com/setup_lts.x | bash && apt install nodejs", "test": "node -e 'console.log(1)'"}
+  ]
+}

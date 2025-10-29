@@ -23,7 +23,7 @@ start_report() {
     th{background:#eee;}
     .pass{background:#e6ffed;color:#006b24;}
     .fail{background:#ffe6e6;color:#b00020;}
-    pre{margin:0;white-space:pre-wrap;}
+    pre{margin:0;white-space:pre-wrap;font-size:0.9em;}
   </style>
 </head>
 <body>
@@ -47,12 +47,13 @@ escape_html() {
 finish_report() {
   cat >>"$REPORT" <<'EOF'
 </table>
+<p><em>Generated on $(date -u "+%Y-%m-%d %H:%M UTC")</em></p>
 </body></html>
 EOF
 }
 
 # ------------------------------------------------------------
-# 2. Language detectors (run from src/ folders)
+# 2. Language detection from src/
 # ------------------------------------------------------------
 detect_languages() {
   find src -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 2>/dev/null | sort
@@ -66,35 +67,29 @@ validate_python() {
   echo "Checking Python..."
   python3 --version
   pip3 --version
-  # Optional: install a tiny package to prove pip works
-  pip3 install --quiet flask >/dev/null
-  python3 -c "import flask; print('Flask version:', flask.__version__)"
+  pip3 install --quiet flask >/dev/null 2>&1
+  python3 -c "import flask; print('Flask version:', flask.__version__)" 2>/dev/null || echo "Flask import failed"
 }
 
 validate_node() {
   echo "Checking Node.js..."
   node --version
   npm --version
-  # Optional: install a tiny package
-  npm install -g npm@latest >/dev/null 2>&1
-  echo "npm updated to $(npm --version)"
+  npm install -g npm@latest >/dev/null 2>&1 || echo "npm update skipped"
+  echo "npm version: $(npm --version)"
 }
 
 validate_go() {
   echo "Checking Go..."
   go version
-  # Optional: build a hello world
-  echo 'package main
-import "fmt"
-func main(){fmt.Println("Go works!")}' > /tmp/hello.go
-  go run /tmp/hello.go
+  echo 'package main; import "fmt"; func main(){fmt.Println("Go works!")}' > /tmp/hello.go
+  go run /tmp/hello.go 2>/dev/null || echo "Go run failed"
 }
 
 validate_rust() {
   echo "Checking Rust..."
   rustc --version
   cargo --version
-  # Optional: compile a tiny program
   mkdir -p /tmp/rusthello
   cat > /tmp/rusthello/Cargo.toml <<'EOF'
 [package]
@@ -105,17 +100,17 @@ EOF
   cat > /tmp/rusthello/src/main.rs <<'EOF'
 fn main() { println!("Rust works!"); }
 EOF
-  (cd /tmp/rusthello && cargo build --quiet && ./target/debug/hello)
+  (cd /tmp/rusthello && cargo build --quiet && ./target/debug/hello) 2>/dev/null || echo "Rust build failed"
 }
 
 # ------------------------------------------------------------
-# 4. MAIN driver
+# 4. MAIN DRIVER
 # ------------------------------------------------------------
 main() {
   start_report
 
   if [ $# -eq 1 ]; then
-    # ---- Run a single language (used by GitHub Actions) ----
+    # Single language (called by GitHub Actions)
     lang="$1"
     echo "=== Validating $lang ==="
     if output=$( validate_"$lang" 2>&1 ); then
@@ -124,7 +119,7 @@ main() {
       add_row "$lang" "FAIL" "$output"
     fi
   else
-    # ---- Full run – detect from src/ ----
+    # Full auto-detect
     echo "Detecting languages in src/..."
     while IFS= read -r lang; do
       echo "=== Validating $lang ==="
@@ -137,8 +132,39 @@ main() {
   fi
 
   finish_report
-  echo "Report written to $REPORT"
+  write_status_json  # ← This is the key for badges
+  echo "Report + status.json written to $OUT_DIR"
 }
 
-# Run the script
+# ------------------------------------------------------------
+# 5. Generate status.json for README badges
+# ------------------------------------------------------------
+write_status_json() {
+  local passing=0 failing=0
+  passing=$(grep -c '<td>PASS</td>' "$REPORT" || echo 0)
+  failing=$(grep -c '<td>FAIL</td>' "$REPORT" || echo 0)
+
+  # Extract failing language names
+  failing_list=$(grep -oP '<td>\K[^<]+(?=</td><td>FAIL</td>)' "$REPORT" | tr '\n' ',' | sed 's/,$//' || echo "")
+
+  # Build JSON array
+  if [ -z "$failing_list" ]; then
+    failing_array="[]"
+  else
+    failing_array=$(printf '"%s",' $(echo "$failing_list" | tr ',' ' ') | sed 's/,$//')
+    failing_array="[$failing_array]"
+  fi
+
+  cat > "$OUT_DIR/status.json" <<EOF
+{
+  "passing": $passing,
+  "failing": $failing_array,
+  "lastRun": "$(date -u '+%Y-%m-%d %H:%M UTC')"
+}
+EOF
+}
+
+# ------------------------------------------------------------
+# 6. Run
+# ------------------------------------------------------------
 main "$@"

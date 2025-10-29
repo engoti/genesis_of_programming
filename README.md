@@ -5,8 +5,12 @@
 
 
 <br>
-Welcome to "genesis_of_programming"!<br>A project designed to help you familiarize yourself with the open source contribution workflow on GitHub, as well as to help you learn the basics of programming with different languages, libraries and frameworks.
+**Genesis of Programming**  
+*Learn programming + GitHub by saying "Hello World" in 50+ languages — the right way.*
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/engoti/genesis_of_programming?quickstart=1)  
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/engoti/genesis_of_programming/pulls)  
+[![good first issue](https://img.shields.io/github/issues/engoti/genesis_of_programming/good%20first%20issue?label=good%20first%20issues)](https://github.com/engoti/genesis_of_programming/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 
 
 

@@ -10,6 +10,11 @@ permissions:
   contents: read          # default
   pull-requests: write    # needed for commenting
 
+permissions:
+  contents: write
+  # Allow sudo apt-get
+  actions: write
+
 jobs:
   validate:
     runs-on: ubuntu-latest

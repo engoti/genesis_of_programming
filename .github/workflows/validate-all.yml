@@ -9,6 +9,11 @@ permissions:
   pages: write
   id-token: write
 
+permissions:
+  contents: write
+  # Allow sudo apt-get
+  actions: write
+
 jobs:
   validate:
     runs-on: ubuntu-latest

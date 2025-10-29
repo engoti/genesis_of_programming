@@ -1,23 +1,28 @@
-name: 🌟 Nightly Full Validation
+name: Nightly Full Validation
 on:
   schedule:
-    - cron: '0 2 * * *'  # 2 AM UTC daily
-  workflow_dispatch:      # Manual trigger
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write    # Allows push to gh-pages
+  pages: write
+  id-token: write
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: 🔧 Setup & Validate All Languages
-      run: |
-        chmod +x .github/scripts/validate.sh
-        .github/scripts/validate.sh
-        
-    - name: 📊 Deploy Status (Badges Update!)
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./validate/
-        force_orphan: true
+      - uses: actions/checkout@v4
+
+      - name: Run Validation
+        run: |
+          chmod +x .github/scripts/validate.sh
+          .github/scripts/validate.sh
+
+      - name: Deploy Status to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./validate/
+          force_orphan: true

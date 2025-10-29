@@ -1,4 +1,6 @@
+# .github/workflows/nightly-full-validation.yml
 name: Nightly Full Validation
+
 on:
   schedule:
     - cron: '0 2 * * *'
@@ -10,15 +12,60 @@ permissions:
   actions: write
 
 jobs:
-  validate:
+  # -----------------------------------------------------------------
+  # One job per language group – you can add more later
+  # -----------------------------------------------------------------
+  node:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: chmod +x .github/scripts/validate.sh
-      - run: .github/scripts/validate.sh
-      - name: Deploy Status
-        uses: peaceiris/actions-gh-pages@v3
+
+      - name: Install Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Run Node validation
+        run: |
+          chmod +x .github/scripts/validate.sh
+          .github/scripts/validate.sh node   # <-- only node
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: validate/
+
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: |
+          chmod +x .github/scripts/validate.sh
+          .github/scripts/validate.sh python
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: validate/
+
+  # … add go, rust, java, etc. the same way …
+
+  # -----------------------------------------------------------------
+  # Deploy the latest report
+  # -----------------------------------------------------------------
+  deploy:
+    if: always()
+    needs: [node, python]   # list all jobs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: pages
+          path: validate/
+      - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./validate/
+          publish_dir: ./validate
           force_orphan: true

@@ -1,0 +1,92 @@
+# .github/labeler-config.yml
+# -------------------------------------------------
+#  Map changed files → GitHub labels
+#  (Create these labels in the repo first!)
+# -------------------------------------------------
+
+# ---------- Area labels ----------
+frontend:
+  - "web/**/*"
+  - "src/**/*.{html,css,js,ts,jsx,tsx,vue,svelte,astro}"
+  - "**/*.{htm,html,css,scss,sass,less,styl}"
+  - "**/*.{vue,svelte,astro,blade}"
+  - "package.json"
+
+backend:
+  - "server/**/*"
+  - "api/**/*"
+  - "**/*.{py,rb,go,rs,java,kt,scala,groovy,php,ex,exs,erl,cr}"
+  - "**/Dockerfile*"
+  - "**/docker-compose.yml"
+
+docs:
+  - "**/*.md"
+  - "**/*.mdx"
+  - "docs/**/*"
+  - "README*"
+  - "CONTRIBUTING*"
+  - "LICENSE*"
+
+config:
+  - "**/*.yml"
+  - "**/*.yaml"
+  - "**/*.json"
+  - "**/*.toml"
+  - "**/*.xml"
+  - "**/*.csv"
+  - "**/.gitignore"
+  - ".github/**/*"
+
+test:
+  - "**/*.{test,spec}.{js,ts,py,rb,go,rs,java}"
+  - "**/tests/**/*"
+  - "**/__tests__/**/*"
+  - "**/test/**/*"
+  - "jest.config.*"
+  - "vitest.config.*"
+
+ci:
+  - ".github/workflows/**/*"
+
+# ---------- Language labels ----------
+lang-html:      - "**/*.{html,htm}"
+lang-css:       - "**/*.{css,scss,sass,less}"
+lang-js:        - "**/*.{js,jsx,cjs,mjs}"
+lang-ts:        - "**/*.{ts,tsx}"
+lang-python:    - "**/*.py"
+lang-ruby:      - "**/*.rb"
+lang-go:        - "**/*.go"
+lang-rust:      - "**/*.rs"
+lang-java:      - "**/*.{java,kt,scala,groovy}"
+lang-php:       - "**/*.php"
+lang-elixir:    - "**/*.{ex,exs}"
+lang-crystal:   - "**/*.cr"
+lang-c:         - "**/*.{c,h}"
+lang-cpp:       - "**/*.{cpp,cc,cxx,hpp,hxx}"
+lang-csharp:    - "**/*.{cs,fs}"
+lang-d:         - "**/*.d"
+lang-ada:       - "**/*.adb"
+lang-solidity:  - "**/*.{sol}"
+lang-vyper:     - "**/*.{vy}"
+lang-lua:       - "**/*.lua"
+lang-clojure:   - "**/*.{clj,cljc,cljs,edn}"
+lang-ocaml:     - "**/*.{ml,mli}"
+lang-haskell:   - "**/*.{hs,lhs}"
+lang-julia:     - "**/*.jl"
+lang-r:         - "**/*.r"
+lang-nim:       - "**/*.nim"
+lang-zig:       - "**/*.zig"
+lang-fortran:   - "**/*.{f,f90,f95,f03}"
+lang-pascal:    - "**/*.{pas,pp}"
+lang-cobol:     - "**/*.{cob,cbl,cpy}"
+lang-erlang:    - "**/*.{erl,hrl}"
+lang-smalltalk: - "**/*.{st}"
+lang-bash:      - "**/*.sh"
+lang-perl:      - "**/*.pl"
+lang-asm:       - "**/*.{asm,s,S}"
+lang-latex:     - "**/*.{tex,cls,sty}"
+lang-lisp:      - "**/*.{lisp,lsp,cl}"
+lang-sql:       - "**/*.{sql}"
+lang-tlaplus:   - "**/*.{tla,cfg}"
+lang-docker:    - "**/Dockerfile*"
+lang-k8s:       - "**/*.{yaml,yml}"   # refine later if needed

@@ -1,5 +1,8 @@
+# .github/workflows/labeler.yml
+name: Pull Request Labeler
+
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize, reopened]
 
 permissions:
@@ -10,12 +13,15 @@ jobs:
   label:
     runs-on: ubuntu-latest
     steps:
+      # CRITICAL: Checkout the PR branch (not main!)
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - uses: actions/labeler@v4
+      # Now run labeler
+      - name: Apply labels
+        uses: actions/labeler@v4
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           configuration-path: .github/labeler-config.yml

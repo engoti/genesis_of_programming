@@ -1,11 +1,12 @@
 # .github/workflows/labeler.yml
+# .github/workflows/labeler.yml
 name: Pull Request Labeler
 
+# Use pull_request (not pull_request_target)
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize, reopened]
 
-# Required for the default GITHUB_TOKEN to write labels
 permissions:
   contents: read
   pull-requests: write
@@ -14,6 +15,10 @@ jobs:
   label:
     runs-on: ubuntu-latest
     steps:
+      # Checkout the PR branch (so config file is available)
+      - uses: actions/checkout@v4
+
+      # Now run labeler
       - uses: actions/labeler@v4
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}

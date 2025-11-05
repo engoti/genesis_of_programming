@@ -59,7 +59,7 @@ That’s it. You just contributed to open source.
 
 ## Table of Contents
 
--   [Quick Start](#quick-start)
+-   ## **[Quick Start](#quick-start)** *(click to jump)*
 -   [Prerequisites](#prerequisites)
     -   [Installing an IDE](#installing-an-ide)
     -   [Installing Git](#installing-git)
@@ -149,6 +149,42 @@ That’s it. You just contributed to open source.
 -   [Contact](#contact)
 
 ![line]
+
+
+**Genesis of Programming**  
+*Learn programming + GitHub by saying "Hello World" in 50+ languages — the right way.*
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/engoti/genesis_of_programming?quickstart=1)  
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/engoti/genesis_of_programming/pulls)  
+[![good first issue](https://img.shields.io/github/issues/engoti/genesis_of_programming/good%20first%20issue?label=good%20first%20issues)](https://github.com/engoti/genesis_of_programming/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+
+
+## One-Click Start (No Setup Needed)
+
+**Click this button → start coding in 30 seconds:**
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/engoti/genesis_of_programming?quickstart=1)
+
+> All tools (Python, Node.js, Rust, Java, Go, etc.) are **pre-installed**  
+> VS Code + extensions ready  
+> Git configured  
+> No downloads. No errors. Just code.
+
+---
+## How to Contribute (3 Steps)
+
+1. **Pick an open issue**  
+   → Look for `good first issue` + your favorite language
+
+2. **Write "Hello World"**  
+   → Create a file in `src/[language]/`  
+   → Example: `src/python/hello.py`
+
+3. **Open a Pull Request**  
+   → GitHub guides you  
+   → We’ll merge it in < 24 hours
+
+That’s it. You just contributed to open source.
 
 
 

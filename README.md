@@ -181,7 +181,7 @@ npx tailwindcss init -p
 
 ---
 ## How to Contribute (3 Steps)
-```
+
 1. **Pick an open issue**  
    → Look for `good first issue` + your favorite language
 

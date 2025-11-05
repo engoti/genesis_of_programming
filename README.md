@@ -64,7 +64,7 @@ That’s it. You just contributed to open source.
   - [Git](#installing-git)
   - [Node.js & NPM](#installing-nodejs-and-npm)
   - [Languages & Tools](#language-specific-installs)
-- [Contributing](#how-to-contribute)
+- [How to Contribute (3 Steps)](#how-to-contribute-3-steps)
 - [Best Practices](#best-practices)
 - [What's Next?](#whats-next)
 - [Sponsors](#sponsors)
@@ -178,3 +178,20 @@ For SASS: `npm install -g sass`
 npm create vite@latest my-project -- --template vanilla
 cd my-project && npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
+
+---
+
+## How to Contribute (3 Steps)
+
+1. **Pick an open issue**  
+   → Look for `good first issue` + your favorite language
+
+2. **Write "Hello World"**  
+   → Create a file in `src/[language]/`  
+   → Example: `src/python/hello.py`
+
+3. **Open a Pull Request**  
+   → GitHub guides you  
+   → We’ll merge it in < 24 hours
+
+That’s it. You just contributed to open source.

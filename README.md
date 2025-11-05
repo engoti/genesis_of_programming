@@ -196,3 +196,16 @@ npx tailwindcss init -p
 That’s it. You just contributed to open source.
 
 ---
+
+## Best Practices
+
+Follow these rules to keep the repo **clean, fast, and educational**.
+
+---
+
+### 1. One Language = One File
+
+```text
+src/rust/hello.rs        Correct
+src/rust/               Incorrect (no folder)
+src/rust/main.rs        Incorrect (wrong name)

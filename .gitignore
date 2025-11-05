@@ -1,6 +1,21 @@
+# === .NET / C# Build Output ===
+**/bin/
+**/obj/
+
+# === NuGet ===
+**/*.nuget.cache
+**/*.dgspec.json
+**/project.assets.json
+
+# === Your Existing Rules (Keep These!) ===
 **/node_modules/
 **/.clj-kondo/
 **/.lsp/
 **/.vscode/
 **/.DS_Store
 
+# === Optional: OS & IDE ===
+Thumbs.db
+*.swp
+*.suo
+*.user

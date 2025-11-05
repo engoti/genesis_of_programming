@@ -1,6 +1,26 @@
 <div align="center">
 
 ![Fork, Commit, Merge](/assets/images/lms.jpg)
+
+---
+
+</div>
+
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+  - [Recommended IDE: VS Code](#installing-an-ide)
+  - [Git](#installing-git)
+  - [Node.js & NPM](#installing-nodejs-and-npm)
+  - [Languages & Tools](#language-specific-installs)
+- [How to Contribute (3 Steps)](#how-to-contribute-3-steps)
+- [Best Practices](#best-practices)
+- [What's Next?](#whats-next)
+- [Sponsors](#sponsors)
+- [Contact](#contact)
+
+---
+
 [![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 
@@ -55,22 +75,7 @@ That’s it. You just contributed to open source.
 
 ---
 
-</div>
 
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-  - [Recommended IDE: VS Code](#installing-an-ide)
-  - [Git](#installing-git)
-  - [Node.js & NPM](#installing-nodejs-and-npm)
-  - [Languages & Tools](#language-specific-installs)
-- [How to Contribute (3 Steps)](#how-to-contribute-3-steps)
-- [Best Practices](#best-practices)
-- [What's Next?](#whats-next)
-- [Sponsors](#sponsors)
-- [Contact](#contact)
-
----
 
 ## Prerequisites
 

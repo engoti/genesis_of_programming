@@ -59,7 +59,6 @@ That’s it. You just contributed to open source.
 
 ## Table of Contents
 
-- [Quick Start](#quick-start)
 - [Prerequisites](#prerequisites)
   - [Recommended IDE: VS Code](#installing-an-ide)
   - [Git](#installing-git)
